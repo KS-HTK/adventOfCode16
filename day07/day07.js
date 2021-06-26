@@ -3,10 +3,10 @@ const fs = require('fs');
 let rawdata = fs.readFileSync('./day07/input');
 let data = rawdata.toString();
 let ips = data.split("\n");
-let tlsPos = /(?<!\[)(?:(.)(.)\2\1)(?![\w]*[\]])/;
-let tlsNeg = /(?<=\[[\w]*)(?:(.)(.)\2\1)(?=[\w]*[\]])/;
-let sslAba = /(?=(?<!\[)((\w)(\w)\2)(?![\w]*[\]]))./g;
-let sslBab = /(?=(?<=\[[\w]*)((\w)(\w)\2)(?=[\w]*[\]]))./g;
+let tlsPos = /(?<!\[)(?:(\w)(\w)\2\1)(?![\w]*[\]])/;        //Match abba outside of square brackets
+let tlsNeg = /(?<=\[[\w]*)(?:(\w)(\w)\2\1)(?=[\w]*[\]])/;   //Match abba inside of square brackets
+let sslAba = /(?=(?<!\[)((\w)(\w)\2)(?![\w]*[\]]))./g;      //Match aba outside of square brackets (lookahead used for overlapping captures)
+let sslBab = /(?=(?<=\[[\w]*)((\w)(\w)\2)(?=[\w]*[\]]))./g; //Match aba inside of square brackets (lookahead used for overlapping captures)
 let tlsCount = 0;
 let sslCount = 0;
 ips.forEach(ip => {
