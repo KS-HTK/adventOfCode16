@@ -7,7 +7,7 @@ let field = [data];
 
 field = expandField(field, 40);
 console.log("Part 1:", countSafe(field));
-field = expandField(field, 400000)
+field = expandField(field, 400000);
 console.log("Part 2:", countSafe(field));
 
 function expandField(field, finalLength) {
@@ -18,12 +18,12 @@ function expandField(field, finalLength) {
     const last = field[field.length - 1];
     let newL = "";
     for (let index = 0; index < last.length; index++) {
-      let left = last[index-1];
+      let left = last[index - 1];
       let center = last[index];
-      let right = last[index+1];
-      left = (left==undefined) ? '.': left
-      right = (right==undefined) ? '.': right
-      let sequence = left+center+right
+      let right = last[index + 1];
+      left = left == undefined ? "." : left;
+      right = right == undefined ? "." : right;
+      let sequence = left + center + right;
       if (trapPatterns.includes(sequence)) {
         newL += "^";
       } else {
